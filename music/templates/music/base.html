@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>{% block title %}Viberr{% endblock %}</title>
+    {% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<a class="navbar-brand" font="Satisfy" href="{% url 'index' %}">Viberr</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbar">
+      <div class="container-fluid">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'index' %}">Albums <span class="glyphicon glyphicon-cd" aria-hidden="true"></span></a>
+      </li>
+          <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Songs<span class="glyphicon glyphicon-cd" aria-hidden="true"></span></a>
+      </li>
+    </ul>
+ <form class="form-inline my-2 my-lg-0 navbar-left">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+ </form></ul></div>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="{% url 'album-add' %}">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Album
+                </a>
+            </li>
+                <li>
+                <a href="">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>Logout
+                </a>
+            </li>
+        </ul>
+    </ul>
+  </div>
+</nav>
+{% block body %}
+{% endblock %}
+
+
+</html>

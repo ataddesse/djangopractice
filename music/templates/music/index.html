@@ -1,0 +1,25 @@
+
+
+
+
+{% extends 'music/base.html' %}
+
+{% block body %}
+
+
+    <h2>Here are my albums</h2>
+<ul>
+    {% for album in object_list %}
+    <li><a href="{% url 'detail' album.id %}">{{  album.album_title }}</a></li>
+        <form action="{% url 'album-delete' album.id%}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="album_id" value="{{ album.id }}"/>
+        <button type="submit" >
+            <span class="glyphicon glyphycon-trash"></span>
+        </button>
+        </form>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

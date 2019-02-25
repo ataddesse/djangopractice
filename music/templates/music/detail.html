@@ -1,0 +1,25 @@
+
+{% extends 'music/base.html' %}
+{% block title %}Album detail{% endblock %}
+{% block body %}
+<img src="{{ album.album_logo }}">
+<h1>{{ album.album_title }}</h1>
+{% if error_message %}
+<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form action="{% url 'favorite' album.id %}" method="post">
+    {% csrf_token %}
+    {% for song in album.song_set.all %}
+        <input type="radio" id="song{{ forloop.counter }}" name="song" value="{{ song.id }}">
+        <label for="song{{ forloop.counter }}">
+            {{ song.song_title }}
+            {% if song.is_favorite %}
+                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHcAAAB3CAMAAAAO5y+4AAAAkFBMVEX////95gb46hH85wn56Q776Av66Az85wj56Q/56RD85wf66A376Ar26xb/5QH46QD//vj//Or+/OT++tr95yD++Mn78o///fD68Hn++ND58GX68X/56z/6727/8Zf961j+8p796UX897r+86X79rP46yn+7Gz+74T57Uz/7nv96Tf+9sD97GH68oj471z/6lCRctlEAAAEsUlEQVRogdXbWXuiMBQG4CJqO5ESNkEsbiyO1db+/383AVxYkpADIX3m3MzV9H0SPg4hxJeX/7asX3JX8a+wW/T1G2xqzJGjnl2i+RxtlbMOMuYz46A6WoFnzImLQsXumbDz2Qwd1bI/OUtcw7NVspuCJe4MpQpZ/8GSZKljk5ItXeSqYuMbW7gz5CtiQ2O+qLjGQg1rG8ai5qKLCtby8KLhKnk4RHh6d2elayAFvfL6ZJ9uMjr7gafTaX2aieuNzW5Ltj7Nhq6NfAunOUtz/47KXgqW4qLXMZPlTumuruvaiOs7O6uzVXfMW/jGNlyjdLXRnsLRjaVc3nyix1rfre8s3UUjre++8RvX1bVR1ncJnjJdvXTHWN/FhH2b0mL1cNGw9Z1lBbbjuG64jNO9/7Fan06nKMpZunufZjJgyPrOzpHwEifE2KzXV4Jk2QQ3q8IyLi8Z8A/A/a7+9XdS5J9Jrf6QensTcSHruyB7r9dk0mb57o3VXzXI+i7FXBbiwp7CJz7MZJuxIq4GWd+5uHO8gu6rtoMM+AP3cpuxIi7StoB7OOg3XopLYP0o3i6r0RKJFa1bFWwha7uL6BPiJBBn+uVtu4jI530g5IYYPs2UWJUscUl9Cm3zbLCUy1txNfO47HYt+S6Rz91vEXss7s4F3bz8runOJMW54Wrmjj/dSywvzo06p7z7ao1lxrk2ZNPbsqfbmUiOVcUlxW5jPh7HNW/1E9On24o4D0F6rIyny4hVxTXN85baxmLcw20Nl+OS+qQtha6Y6Q6KVa1+2i+OrgrXpIzYb8LS4vyoL1q4rBHjXBbjpTHFdFY8VvzhMjcFTnigyxuvx+5aLt2VEqsdr02v8Fgu/2XCEnKbsWJ3q4fb9bKYYK7LeejzWK97dZvhFjs4zgeB9WXYdod2DbFNxA3ucoHjFdzKc+TGyhN9G3c7xyu4pitYkUtb1r7iDo7Vp6j67JUS4mwC9v+DTFqcPYFXlUcthS9vl3sAbaT5kmJlAvcNM5a7ALmdDblRTovt2h+kTrMJ3Z1NmS4kzrBLm9dKRqyO8D1wGU+FPVitLHT6x7nPx8KE6Qq/+YIjldd1eJzNPid2uqe5O8499vuXEmLlCT/5nlVrkj3dc48PSZG4y4wzaDO4LKs2zYCNnOrl7fEdKZYRK8AS414fMroV/PSKFclw4e3KaV/eHvuD8MMriQyXtoHRURsZsTLB7SqYTCS4GrhdVV72B8TKA7crn+sWrGF0uvDv7Vd+rPJzOGdkMLrVwwUfqHDql7faJTExZ4evxA3CKJd5LrhdXRjTjDHODt/L29Pc8pHBjRX4pM6q6RYk/rNJw1pEXTLZHBd8jiOquYUZ+TFt0eIjxHahpzgrdxERDbxJ2Osz56whlgt5B8yrfFEovvNf/bjr5t9rGj1W4FXdtSCj1V6svzq7fMjt4ZrA2zfAk+v3xQb8r1TXaK9GQNd2wX3V/tJQyx39hF9eqZfLNVfN4WD7SODaNKs6/R2TIQ9qV30rIEOujFfhzwouWqXGP7FaqU/z4So5kvyo0Lu7in/NYP29tSulPyrIKzwUrmqWDHn7Oy55lB7UtMl2bRX+hqJWymMFqX/9xrIl8qwUlgAAAABJRU5ErkJggg==" />
+            {% endif %}
+        </label><br>
+
+        {% endfor %}
+<input type="submit" value="Favorite">
+</form>
+{% endblock %}
